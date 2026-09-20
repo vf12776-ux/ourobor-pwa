@@ -24,7 +24,7 @@
     }
   ],
   "shortcuts": [
-    { "name": "Каталог", "url": "./catalog" },
-    { "name": "Корзина", "url": "./cart" }
+    { "name": "Каталог", "url": "https://ourobor.ru" },
+    { "name": "Telegram", "url": "https://t.me/ourobor_spb" }
   ]
 }

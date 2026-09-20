@@ -8,14 +8,10 @@
     <meta name="description" content="Минималистичный стритвир из Санкт-Петербурга.">
     <meta name="theme-color" content="#000000">
     
-    <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
-    
-    <!-- Иконки для PWA и iOS -->
     <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
     <link rel="apple-touch-icon" href="icons/icon-192.png">
     
-    <!-- iOS Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="OUROBOR">
@@ -24,10 +20,8 @@
         :root {
             --bg-color: #000000;
             --text-color: #FFFFFF;
-            --accent-gray: #333333;
             --border-color: #444444;
         }
-
         body {
             margin: 0;
             padding: 0;
@@ -40,8 +34,6 @@
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
         }
-
-        /* Container */
         .container {
             width: 100%;
             max-width: 480px;
@@ -49,18 +41,8 @@
             box-sizing: border-box;
             text-align: center;
         }
-
-        /* Logo Area */
-        .logo-container {
-            margin-bottom: 40px;
-        }
-        
-        .ourobor-logo {
-            width: 80px;
-            height: 80px;
-            fill: white;
-        }
-
+        .logo-container { margin-bottom: 40px; }
+        .ourobor-logo { width: 80px; height: 80px; }
         h1 {
             font-size: 24px;
             font-weight: 700;
@@ -68,22 +50,18 @@
             margin: 10px 0 5px 0;
             text-transform: uppercase;
         }
-
         p.subtitle {
             font-size: 14px;
             color: #888;
             margin-bottom: 30px;
             letter-spacing: 0.5px;
         }
-
-        /* Buttons */
         .btn-group {
             display: flex;
             flex-direction: column;
             gap: 15px;
             width: 100%;
         }
-
         .btn {
             display: block;
             width: 100%;
@@ -99,82 +77,28 @@
             transition: all 0.2s ease;
             cursor: pointer;
             border-radius: 0;
+            box-sizing: border-box;
         }
-
         .btn:hover {
             background: var(--text-color);
             color: var(--bg-color);
             border-color: var(--text-color);
         }
-
         .btn-primary {
             background: var(--text-color);
             color: var(--bg-color);
             border: 1px solid var(--text-color);
         }
-        
         .btn-primary:hover {
             background: transparent;
             color: var(--text-color);
         }
-
-        /* Install Banner */
-        #install-banner {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            background: #1a1a1a;
-            border: 1px solid #333;
-            padding: 15px;
-            border-radius: 8px;
-            z-index: 1000;
-            justify-content: space-between;
-            align-items: center;
+        #install-help-btn {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #888;
+            border-color: #333;
         }
-
-        #install-banner button {
-            background: #fff;
-            color: #000;
-            border: none;
-            padding: 8px 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        /* iOS Modal */
-        #ios-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        
-        .modal-content {
-            background: #111;
-            padding: 30px;
-            border: 1px solid #333;
-            max-width: 300px;
-            text-align: center;
-        }
-
-        .close-modal {
-            margin-top: 20px;
-            background: transparent;
-            border: 1px solid #555;
-            color: #fff;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-
         footer {
             margin-top: auto;
             padding: 20px;
@@ -182,12 +106,51 @@
             color: #444;
             text-transform: uppercase;
         }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .modal-box {
+            background: #111;
+            padding: 30px;
+            border: 1px solid #333;
+            max-width: 400px;
+            width: 100%;
+            text-align: left;
+        }
+        .modal-box h3 {
+            margin-top: 0;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .modal-box ol {
+            padding-left: 20px;
+            line-height: 1.6;
+        }
+        .modal-close {
+            margin-top: 20px;
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            width: 100%;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Logo -->
         <div class="logo-container">
             <svg class="ourobor-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="50" cy="50" r="45" stroke="white" stroke-width="4" fill="none"/>
@@ -200,74 +163,105 @@
         <p class="subtitle">Saint Petersburg • Est. 2024</p>
 
         <div class="btn-group">
-    <a href="https://ourobor.ru" class="btn btn-primary" target="_blank">Каталог</a>
-    <a href="https://ourobor.ru/delivery" class="btn" target="_blank">Доставка & Возврат</a>
-    <a href="https://t.me/ourobor_spb" class="btn" target="_blank">Telegram Канал</a>
-</div>
-    </div>
-
-    <!-- Install Banner -->
-    <div id="install-banner">
-        <span>Установить приложение OUROBOR</span>
-        <button id="install-btn">Установить</button>
-    </div>
-
-    <!-- iOS Modal -->
-    <div id="ios-modal">
-        <div class="modal-content">
-            <h3>Установка на iOS</h3>
-            <p>Нажмите кнопку <strong>"Поделиться"</strong> внизу экрана Safari и выберите <strong>"На экран «Домой»"</strong>.</p>
-            <button class="close-modal" onclick="document.getElementById('ios-modal').style.display='none'">Понятно</button>
+            <a href="https://ourobor.ru" class="btn btn-primary" target="_blank">Каталог</a>
+            <a href="https://ourobor.ru/delivery" class="btn" target="_blank">Доставка & Возврат</a>
+            <a href="https://t.me/ourobor_spb" class="btn" target="_blank">Telegram Канал</a>
+            <button id="install-help-btn" class="btn" style="display:none;">Как установить приложение</button>
         </div>
     </div>
 
-    <footer>
-        © 2026 Ourobor Brand
-    </footer>
+    <div id="install-help-modal" class="modal-overlay">
+        <div class="modal-box">
+            <h3>Установка OUROBOR</h3>
+            <div id="install-instructions"></div>
+            <button class="modal-close" onclick="document.getElementById('install-help-modal').style.display='none'">Понятно</button>
+        </div>
+    </div>
+
+    <footer>© 2026 Ourobor Brand</footer>
 
     <script>
-        // Service Worker Registration
+        // Service Worker
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .then(reg => console.log('SW registered'))
-                    .catch(err => console.log('SW failed', err));
+                navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW failed', err));
             });
         }
 
-        // Install Logic
-        let deferredPrompt;
-        const installBanner = document.getElementById('install-banner');
-        const installBtn = document.getElementById('install-btn');
+        // Определение ОС и браузера
+        const ua = navigator.userAgent;
+        const platform = navigator.platform || '';
+        const isIOS = (/iPad|iPhone|iPod/.test(ua) || (platform === 'MacIntel' && navigator.maxTouchPoints > 1)) && !window.MSStream;
+        const isAndroid = /Android/.test(ua);
+        const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
+        const isSamsung = /SamsungBrowser/i.test(ua);
+        const isFirefox = /Firefox/i.test(ua);
+        const isYandex = /YaBrowser/i.test(ua);
+        const isOpera = /OPR|Opera/.test(ua);
+        const isEdge = /Edg/.test(ua);
+        const isChrome = /Chrome/.test(ua) && !/Edg|OPR|YaBrowser|SamsungBrowser/.test(ua);
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
 
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            if (window.matchMedia('(display-mode: standalone)').matches === false) {
-                installBanner.style.display = 'flex';
-            }
+        // Инструкции
+        const instructions = {
+            ios: '<p><strong>В Safari:</strong></p><ol><li>Нажмите "Поделиться" (квадрат со стрелкой) внизу</li><li>Выберите "На экран Домой"</li><li>Нажмите "Добавить"</li></ol>',
+            samsung: '<p><strong>В Samsung Internet:</strong></p><ol><li>Нажмите меню (⋮) внизу</li><li>"Добавить страницу"</li><li>"На главный экран"</li></ol>',
+            firefox: '<p><strong>В Firefox:</strong></p><ol><li>Нажмите меню (⋮)</li><li>"Установить" или "Добавить на главный экран"</li></ol>',
+            yandex: '<p><strong>В Яндекс.Браузере:</strong></p><ol><li>Нажмите меню (⋮)</li><li>"Добавить на главный экран"</li></ol>',
+            opera: '<p><strong>В Opera:</strong></p><ol><li>Нажмите меню</li><li>"Добавить на главный экран"</li></ol>',
+            chrome: '<p><strong>В Chrome:</strong></p><ol><li>Нажмите меню (⋮) справа сверху</li><li>"Установить приложение OUROBOR"</li></ol>',
+            edge: '<p><strong>В Edge:</strong></p><ol><li>Нажмите меню (⋯)</li><li>"Приложения" → "Установить этот сайт как приложение"</li></ol>',
+            other: '<p>Найдите в меню браузера опцию <strong>"Добавить на главный экран"</strong> или <strong>"Установить"</strong>.</p><p>Или откройте сайт в <strong>Chrome</strong>.</p>'
+        };
+
+        // Показываем кнопку если не установлено
+        if (!isStandalone) {
+            document.getElementById('install-help-btn').style.display = 'block';
+        }
+
+        // Клик по кнопке
+        document.getElementById('install-help-btn').addEventListener('click', () => {
+            let text = '';
+            if (isIOS) text = instructions.ios;
+            else if (isSamsung) text = instructions.samsung;
+            else if (isFirefox) text = instructions.firefox;
+            else if (isYandex) text = instructions.yandex;
+            else if (isOpera) text = instructions.opera;
+            else if (isChrome) text = instructions.chrome;
+            else if (isEdge) text = instructions.edge;
+            else text = instructions.other;
+
+            document.getElementById('install-instructions').innerHTML = text;
+            document.getElementById('install-help-modal').style.display = 'flex';
         });
-
-        installBtn.addEventListener('click', async () => {
+        // Нативная установка для Chrome (автоматический баннер)
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    // Автоматически показываем баннер в Chrome
+    if (isChrome && !isStandalone) {
+        const banner = document.createElement('div');
+        banner.style.cssText = 'position:fixed;bottom:20px;left:20px;right:20px;background:#1a1a1a;border:1px solid #333;padding:15px;border-radius:8px;z-index:1000;display:flex;justify-content:space-between;align-items:center;';
+        banner.innerHTML = '<span style="color:#fff;">Установить OUROBOR</span><button style="background:#fff;color:#000;border:none;padding:8px 16px;font-weight:bold;cursor:pointer;">Установить</button>';
+        document.body.appendChild(banner);
+        banner.querySelector('button').addEventListener('click', async () => {
             if (deferredPrompt) {
                 deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                if (outcome === 'accepted') {
-                    installBanner.style.display = 'none';
-                }
+                await deferredPrompt.userChoice;
+                banner.style.display = 'none';
                 deferredPrompt = null;
             }
         });
+    }
+});
 
-        // iOS Detection
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
-
-        if (isIOS && !isStandalone) {
-            setTimeout(() => {
-                document.getElementById('ios-modal').style.display = 'flex';
-            }, 2000);
-        }
+// Автопоказ модалки на iOS через 2 секунды
+if (isIOS && !isStandalone) {
+    setTimeout(() => {
+        document.getElementById('install-help-btn').click();
+    }, 2000);
+}
     </script>
 </body>
 </html>
