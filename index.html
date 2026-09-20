@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>OUROBOR | SPB Streetwear</title>
+    <meta name="description" content="Минималистичный стритвир из Санкт-Петербурга.">
+    <meta name="theme-color" content="#000000">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Иконки для PWA и iOS -->
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    
+    <!-- iOS Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="OUROBOR">
+
+    <style>
+        :root {
+            --bg-color: #000000;
+            --text-color: #FFFFFF;
+            --accent-gray: #333333;
+            --border-color: #444444;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 480px;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        /* Logo Area */
+        .logo-container {
+            margin-bottom: 40px;
+        }
+        
+        .ourobor-logo {
+            width: 80px;
+            height: 80px;
+            fill: white;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin: 10px 0 5px 0;
+            text-transform: uppercase;
+        }
+
+        p.subtitle {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 30px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border-radius: 0; /* Brutalist style: sharp corners */
+        }
+
+        .btn:hover {
+            background: var(--text-color);
+            color: var(--bg-color);
+            border-color: var(--text-color);
+        }
+
+        .btn-primary {
+            background: var(--text-color);
+            color: var(--bg-color);
+            border: 1px solid var(--text-color);
+        }
+        
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--text-color);
+        }
+
+        /* Install Banner (Hidden by default) */
+        #install-banner {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 15px;
+            border-radius: 8px;
+            z-index: 1000;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #install-banner button {
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 8px 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* iOS Modal */
+        #ios-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background: #111;
+            padding: 30px;
+            border: 1px solid #333;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .close-modal {
+            margin-top: 20px;
+            background: transparent;
+            border: 1px solid #555;
+            color: #fff;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            font-size: 12px;
+            color: #444;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Logo: Minimalist Snake/Circle Symbol -->
+        <div class="logo-container">
+            <svg class="ourobor-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="45" stroke="white" stroke-width="4" fill="none"/>
+                <path d="M50 5 L55 15 L45 15 Z" fill="white"/> <!-- Simple arrow/head indicator -->
+                <text x="50" y="55" font-family="Arial" font-size="20" fill="white" text-anchor="middle" font-weight="bold">O</text>
+            </svg>
+        </div>
+
+        <h1>Ourobor</h1>
+        <p class="subtitle">Saint Petersburg • Est. 2024</p>
+
+        <div class="btn-group">
+            <a href="https://ouroborbrand.com/catalog" class="btn btn-primary">Каталог</a>
+            <a href="https://ouroborbrand.com/delivery" class="btn">Доставка & Возврат</a>
+            <a href="https://t.me/ourobor_spb" class="btn">Telegram Канал</a>
+        </div>
+    </div>
+
+    <!-- Install Prompt for Android/Chrome -->
+    <div id="install-banner">
+        <span>Установить приложение OUROBOR</span>
+        <button id="install-btn">Установить</button>
+    </div>
+
+    <!-- iOS Instruction Modal -->
+    <div id="ios-modal">
+        <div class="modal-content">
+            <h3>Установка на iOS</h3>
+            <p>Нажмите кнопку <strong>"Поделиться"</strong> внизу экрана Safari и выберите <strong>"На экран «Домой»"</strong>.</p>
+            <button class="close-modal" onclick="document.getElementById('ios-modal').style.display='none'">Понятно</button>
+        </div>
+    </div>
+
+    <footer>
+        © 2026 Ourobor Brand
+    </footer>
+
+    <script>
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('SW registered'))
+                    .catch(err => console.log('SW failed', err));
+            });
+        }
+
+        // Install Logic
+        let deferredPrompt;
+        const installBanner = document.getElementById('install-banner');
+        const installBtn = document.getElementById('install-btn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            // Show banner only if not already installed
+            if (window.matchMedia('(display-mode: standalone)').matches === false) {
+                installBanner.style.display = 'flex';
+            }
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    installBanner.style.display = 'none';
+                }
+                deferredPrompt = null;
+            }
+        });
+
+        // iOS Detection
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+
+        if (isIOS && !isStandalone) {
+            // Show modal after 2 seconds
+            setTimeout(() => {
+                document.getElementById('ios-modal').style.display = 'flex';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

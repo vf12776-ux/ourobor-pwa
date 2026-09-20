@@ -1,0 +1,25 @@
+{
+  "name": "OUROBOR Brand",
+  "short_name": "OUROBOR",
+  "description": "Минималистичный стритвир из Санкт-Петербурга",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "ru-RU",
+  "categories": ["shopping", "lifestyle"],
+  "shortcuts": [
+    {
+      "name": "Каталог",
+      "url": "/catalog",
+      "description": "Новая коллекция"
+    },
+    {
+      "name": "Корзина",
+      "url": "/cart",
+      "description": "Ваши товары"
+    }
+  ]
+}
