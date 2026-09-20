@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ourobor-v3';
+const CACHE_NAME = 'ourobor-v5';
 const ASSETS_TO_CACHE = ['./', './index.html', './manifest.json'];
 
 self.addEventListener('install', (event) => {
@@ -10,6 +10,11 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  // Пропускаем все внешние запросы (ourobor.ru, telegram и т.д.)
+  if (!event.request.url.startsWith(self.location.origin)) {
+    return;
+  }
+  
   event.respondWith(
     fetch(event.request).then(res => {
       const clone = res.clone();
