@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <base href="./">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>OUROBOR | SPB Streetwear</title>
@@ -97,7 +98,7 @@
             letter-spacing: 1px;
             transition: all 0.2s ease;
             cursor: pointer;
-            border-radius: 0; /* Brutalist style: sharp corners */
+            border-radius: 0;
         }
 
         .btn:hover {
@@ -117,7 +118,7 @@
             color: var(--text-color);
         }
 
-        /* Install Banner (Hidden by default) */
+        /* Install Banner */
         #install-banner {
             display: none;
             position: fixed;
@@ -146,8 +147,11 @@
         #ios-modal {
             display: none;
             position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.9);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
             z-index: 2000;
             justify-content: center;
             align-items: center;
@@ -183,11 +187,11 @@
 <body>
 
     <div class="container">
-        <!-- Logo: Minimalist Snake/Circle Symbol -->
+        <!-- Logo -->
         <div class="logo-container">
             <svg class="ourobor-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="50" cy="50" r="45" stroke="white" stroke-width="4" fill="none"/>
-                <path d="M50 5 L55 15 L45 15 Z" fill="white"/> <!-- Simple arrow/head indicator -->
+                <path d="M50 5 L55 15 L45 15 Z" fill="white"/>
                 <text x="50" y="55" font-family="Arial" font-size="20" fill="white" text-anchor="middle" font-weight="bold">O</text>
             </svg>
         </div>
@@ -202,13 +206,13 @@
         </div>
     </div>
 
-    <!-- Install Prompt for Android/Chrome -->
+    <!-- Install Banner -->
     <div id="install-banner">
         <span>Установить приложение OUROBOR</span>
         <button id="install-btn">Установить</button>
     </div>
 
-    <!-- iOS Instruction Modal -->
+    <!-- iOS Modal -->
     <div id="ios-modal">
         <div class="modal-content">
             <h3>Установка на iOS</h3>
@@ -225,7 +229,7 @@
         // Service Worker Registration
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
+                navigator.serviceWorker.register('./sw.js')
                     .then(reg => console.log('SW registered'))
                     .catch(err => console.log('SW failed', err));
             });
@@ -239,7 +243,6 @@
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            // Show banner only if not already installed
             if (window.matchMedia('(display-mode: standalone)').matches === false) {
                 installBanner.style.display = 'flex';
             }
@@ -261,7 +264,6 @@
         const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
 
         if (isIOS && !isStandalone) {
-            // Show modal after 2 seconds
             setTimeout(() => {
                 document.getElementById('ios-modal').style.display = 'flex';
             }, 2000);

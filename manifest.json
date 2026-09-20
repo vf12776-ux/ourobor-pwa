@@ -2,24 +2,29 @@
   "name": "OUROBOR Brand",
   "short_name": "OUROBOR",
   "description": "Минималистичный стритвир из Санкт-Петербурга",
-  "start_url": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
   "orientation": "portrait",
-  "scope": "/",
   "lang": "ru-RU",
-  "categories": ["shopping", "lifestyle"],
-  "shortcuts": [
+  "icons": [
     {
-      "name": "Каталог",
-      "url": "/catalog",
-      "description": "Новая коллекция"
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "name": "Корзина",
-      "url": "/cart",
-      "description": "Ваши товары"
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
+  ],
+  "shortcuts": [
+    { "name": "Каталог", "url": "./catalog" },
+    { "name": "Корзина", "url": "./cart" }
   ]
 }
