@@ -234,34 +234,34 @@
             document.getElementById('install-instructions').innerHTML = text;
             document.getElementById('install-help-modal').style.display = 'flex';
         });
-        // Нативная установка для Chrome (автоматический баннер)
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    // Автоматически показываем баннер в Chrome
-    if (isChrome && !isStandalone) {
-        const banner = document.createElement('div');
-        banner.style.cssText = 'position:fixed;bottom:20px;left:20px;right:20px;background:#1a1a1a;border:1px solid #333;padding:15px;border-radius:8px;z-index:1000;display:flex;justify-content:space-between;align-items:center;';
-        banner.innerHTML = '<span style="color:#fff;">Установить OUROBOR</span><button style="background:#fff;color:#000;border:none;padding:8px 16px;font-weight:bold;cursor:pointer;">Установить</button>';
-        document.body.appendChild(banner);
-        banner.querySelector('button').addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                await deferredPrompt.userChoice;
-                banner.style.display = 'none';
-                deferredPrompt = null;
+
+        // НАТИВНАЯ УСТАНОВКА CHROME (автоматический баннер)
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            if (isChrome && !isStandalone) {
+                const banner = document.createElement('div');
+                banner.style.cssText = 'position:fixed;bottom:20px;left:20px;right:20px;background:#1a1a1a;border:1px solid #333;padding:15px;border-radius:8px;z-index:1000;display:flex;justify-content:space-between;align-items:center;';
+                banner.innerHTML = '<span style="color:#fff;">Установить OUROBOR</span><button style="background:#fff;color:#000;border:none;padding:8px 16px;font-weight:bold;cursor:pointer;">Установить</button>';
+                document.body.appendChild(banner);
+                banner.querySelector('button').addEventListener('click', async () => {
+                    if (deferredPrompt) {
+                        deferredPrompt.prompt();
+                        await deferredPrompt.userChoice;
+                        banner.style.display = 'none';
+                        deferredPrompt = null;
+                    }
+                });
             }
         });
-    }
-});
 
-// Автопоказ модалки на iOS через 2 секунды
-if (isIOS && !isStandalone) {
-    setTimeout(() => {
-        document.getElementById('install-help-btn').click();
-    }, 2000);
-}
+        // АВТОПОКАЗ МОДАЛКИ iOS через 2 секунды
+        if (isIOS && !isStandalone) {
+            setTimeout(() => {
+                document.getElementById('install-help-btn').click();
+            }, 2000);
+        }
     </script>
 </body>
 </html>
